@@ -6,6 +6,8 @@
   "types": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
+    "test": "jest",
+    "watch": "jest --watch",
     "lint": "eslint . && markdownlint **/*.md >/dev/null",
     "type-check": "tsc --skipLibCheck --noEmit",
     "build": "rimraf lib && yarn build:types && yarn build:prod",

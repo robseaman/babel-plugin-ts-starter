@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import * as babel from '@babel/core';
-import transformChangeIdentifier, { PluginOptions, Babel } from '..';
+import transformChangeIdentifier from '..';
 
 const rootPath = (fixtureName: string): string =>
   path.join(path.resolve(), 'src', '__tests__', '__fixtures__', fixtureName);
@@ -25,7 +25,7 @@ const readOptions = (fixtureName: string): string | undefined => {
 };
 
 const runTransform = (
-  transformChangeIdentifier: (babel: Babel) => babel.PluginObj<PluginOptions>,
+  transformChangeIdentifier: babel.PluginTarget,
   fixtureName: string,
 ): string => {
   const options = readOptions(fixtureName);

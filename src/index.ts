@@ -1,21 +1,30 @@
-import * as BabelTypes from '@babel/types';
+import { PluginObj } from '@babel/core';
+import * as t from '@babel/types';
 import { Visitor } from '@babel/traverse';
 
+type Options = { changeTo?: string };
+
 export interface PluginOptions {
-  opts: {
-    changeTo?: string;
-  };
+  opts: Options;
   paramName?: string;
   changeTo?: string;
 }
 
 export interface Babel {
-  types: typeof BabelTypes;
+  types: typeof t;
+  version: string; // babel version
+  /**
+   * ...etc...
+   * transform: (code, opts, callback) => void;
+   * traverse: (...) => void;
+   */
 }
 
 const transformChangeIdentifier = (
-  babel: Babel,
-): babel.PluginObj<PluginOptions> => {
+  babelObj: Babel,
+  opts: Options,
+  pluginFilename: string,
+): PluginObj<PluginOptions> => {
   const updateParamNameVisitor: Visitor<PluginOptions> = {
     Identifier(path): void {
       if (path.node.name === this.paramName) {
