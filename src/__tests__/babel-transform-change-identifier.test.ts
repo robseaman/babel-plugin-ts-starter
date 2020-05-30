@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import * as babel from '@babel/core';
-import transformChangeIdentifier from '..';
+import plugin from '..';
 
 const rootPath = (fixtureName: string): string =>
   path.join(path.resolve(), 'src', '__tests__', '__fixtures__', fixtureName);
@@ -24,14 +24,11 @@ const readOptions = (fixtureName: string): string | undefined => {
   return eval(`options = ${optionsString}`); // allow eval to throw it's own errors
 };
 
-const runTransform = (
-  transformChangeIdentifier: babel.PluginTarget,
-  fixtureName: string,
-): string => {
+const runTransform = (fixtureName: string): string => {
   const options = readOptions(fixtureName);
 
   const result = babel.transformFileSync(inputPath(fixtureName), {
-    plugins: [[transformChangeIdentifier, options]],
+    plugins: [[plugin, options]],
     filename: fixtureName, // name for errors
     root: rootPath(fixtureName), // allow the fixture to contain babelrc
     configFile: false, // don't search
@@ -42,9 +39,7 @@ const runTransform = (
 describe('babel-transform-change-identifier', () => {
   ['case1', 'case2'].forEach((testCase) => {
     it(`handles ${testCase}`, () => {
-      expect(
-        runTransform(transformChangeIdentifier, testCase),
-      ).toMatchSnapshot();
+      expect(runTransform(testCase)).toMatchSnapshot();
     });
   });
 });
