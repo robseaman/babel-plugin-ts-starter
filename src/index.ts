@@ -38,7 +38,7 @@ const transformChangeIdentifier = (
   };
 
   return {
-    name: 'transform-remove-logging',
+    name: 'transform-change-identifier',
     visitor: MyVisitor as Visitor<PluginOptions>,
   };
 };
