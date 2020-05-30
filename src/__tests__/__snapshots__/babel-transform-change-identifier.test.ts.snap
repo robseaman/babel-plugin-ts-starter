@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel-transform-change-identifier handles case1 1`] = `
+"function square(x) {
+  return n * n;
+}"
+`;
+
+exports[`babel-transform-change-identifier handles case2 1`] = `
+"function square(num) {
+  return n * n;
+}"
+`;

@@ -1,0 +1,38 @@
+{
+  "name": "babel-plugin-ts-starter",
+  "version": "1.0.0",
+  "description": "starter for creating a babel plugin with typescript",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint . && markdownlint **/*.md >/dev/null",
+    "type-check": "tsc --skipLibCheck --noEmit",
+    "build": "rimraf lib && yarn build:types && yarn build:prod",
+    "build:types": "tsc --skipLibCheck --emitDeclarationOnly",
+    "build:prod": "NODE_ENV=production babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps --copy-files"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.1",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/preset-env": "^7.10.1",
+    "@babel/preset-typescript": "^7.10.1",
+    "@babel/traverse": "^7.10.1",
+    "@babel/types": "^7.10.1",
+    "@types/jest": "^25.2.3",
+    "@typescript-eslint/eslint-plugin": "^3.0.2",
+    "@typescript-eslint/parser": "^3.0.2",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "eslint": "^7.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-markdown": "^2.0.0-alpha.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "jest": "^26.0.1",
+    "markdownlint-cli": "^0.23.1",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.9.3"
+  },
+  "dependencies": {}
+}
