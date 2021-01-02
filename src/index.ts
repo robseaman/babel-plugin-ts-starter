@@ -28,7 +28,7 @@ const transformChangeIdentifier = (
   const updateParamNameVisitor: Visitor<PluginOptions> = {
     Identifier(path): void {
       if (path.node.name === this.paramName) {
-        path.node.name = this.changeTo;
+        path.node.name = this.changeTo!;
       }
     },
   };
